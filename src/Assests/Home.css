@@ -34,7 +34,7 @@
 
 .header_li {
 	display: inline-block;
-	margin-left: 20px;
+	margin-left: 40px;
 }
 .header_border {
 	border: 1px solid #fff;
@@ -43,6 +43,18 @@
 .header_section .MuiAppBar-colorPrimary {
 	color: #000;
 	background-color: none !important;
+}
+.is-sticky {
+    position: fixed;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
+    background-color: #244404 !important;
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 /* end header section */
 
@@ -77,9 +89,13 @@ font-size: 17px;
 line-height: 30px;
 }
 .banner_leftside a {
-	color: #fff;
-	border: 1px solid #fff;
-	padding: 8px 20px;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: 17px;
+	transition: 0.5s ease-in-out;
+    /* line-height: 36px; */
 }
 .banner_rightside {
     padding: 60px 0;
@@ -137,6 +153,16 @@ line-height: 30px;
     text-align: center;
     width: 100%;
 }
+
+.banner_leftside a:hover {
+	color: #fff;
+	background-color: #244404;
+	border: 1px solid #244404;
+	transform: translateX(0);
+
+
+}
+
 /* .banner_rightside img {
 	width: 100%;
 } */
@@ -172,10 +198,14 @@ line-height: 30px;
 	margin: 0 0 30px;
 }
 .overview_leftside a {
-	color: #000;
-	border: 2px solid #000;
-	padding: 8px 30px;
-	font-size: 17px;
+    color: #000;
+    border: 2px solid #000;
+    padding: 8px 30px;
+    font-size: 17px;
+    font-weight: 400;
+    /* line-height: 103px; */
+    text-decoration-line: underline;
+    text-transform: uppercase;
 }
 .brand_sec {
 	background: #fff;
@@ -317,17 +347,17 @@ line-height: 30px;
 	right: 17px;
 }
 .studio_icon1 {
-	color: #fff;
-	background: #2AC1B7;
-	box-shadow: 0px 4px 24px rgba(25, 167, 86, 0.25);
-	border-radius: 50%;
-	width: 112px;
-	height: 112px;
-	display: inline-block;
-	position: absolute;
-	right: 178px;
-	bottom: 110px;
-}     
+    color: #fff;
+    background: #2AC1B7;
+    box-shadow: 0px 4px 24px rgba(25, 167, 86, 0.25);
+    border-radius: 50%;
+    width: 112px;
+    height: 112px;
+    display: inline-block;
+    position: absolute;
+    right: 193px;
+    bottom: 212px;
+}    
 .studio_arrow {
 	font-size: 60px !important;
 	display: flex !important;
@@ -339,6 +369,14 @@ line-height: 30px;
 }
 .slick-dots li button {
 	display: none !important;
+}
+.about_sec a {
+    color: #000;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 103px;
+    border: 2px solid #000;
+    padding: 10px 20px;
 }
 
 
@@ -641,7 +679,7 @@ line-height: 30px;
 }
 .mediablog_link a {
 	color: #000;
-	border: 1px solid #000;
+	border: 2px solid #000;
 	padding: 10px 20px;
 	font-weight: 600;
 	font-size: 21px;

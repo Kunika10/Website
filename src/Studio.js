@@ -4,6 +4,7 @@ import studioimg1 from './Assests/images/studio_img (1).png';
 import studioimg2 from './Assests/images/studio_img (2).png';
 import studioimg4 from './Assests/images/studio_img (4).png';
 import CallMadeIcon from '@material-ui/icons/CallMade';
+import { Link } from 'react-router-dom';
  const Studio = () => {
   return (
     <>
@@ -22,6 +23,9 @@ import CallMadeIcon from '@material-ui/icons/CallMade';
                     <span>STUDIO </span>
                     <span className='studio_icon1'><CallMadeIcon className='studio_arrow'/></span>
                 </h1>
+                <div className='about_sec'>
+                    <Link to ='/'>ABOUT US <CallMadeIcon/></Link>
+                </div>
                 </Col>
                 </Row>
                 </div>

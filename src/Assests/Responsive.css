@@ -58,3 +58,49 @@
 @media screen and (min-width:576px) and (max-width:767px) { 
     
 }
+@media screen and (min-width:1100px) and (max-width:1350px) { 
+    .banner_rightside img {
+        width: 100%;
+    }
+    .banner_section {
+        height: 750px;
+    }
+    .gzrjDL {
+        right: 5rem !important;
+    }
+    .banner_leftside h1 {
+        font-size: 45px;
+    }
+    .banner_leftside p {
+        font-size: 15px;
+    }
+    .overview_leftside h1 {
+        font-size: 45px;
+    }
+    .overview_leftside p {
+        font-size: 15px;
+    }
+    .branding_section h2 {
+        font-size: 45px;
+    }
+    .studio_heading {
+        font-size: 81px;
+        line-height: 137px;
+    }
+    .studio_icon1 {
+        right: 149px;
+        bottom: 202px;
+        width: 90px;
+        height: 90px;
+    }
+    .studio_icon {
+        width: 90px;
+        height: 90px;
+    }
+    .studio_arrow {
+        margin: 0px 15px;
+    }
+}
+@media screen and (min-width:1350px) and (max-width:1500px) { 
+    
+}

@@ -16,7 +16,7 @@ import icon4 from './Assests/images/image 107.png';
                 <div className='overview_section'>
                     <Row>
                         <Col md={6} lg={6} xl={6} xs={12}>
-                        <div className='overview_leftside'>
+                        <div className='overview_leftside' data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                             <span>Overview</span>
                             <h1>About Our Company Insight</h1>
                             <p>Triplet I award-winning interdisciplinary architectural studio cultural, residential and commercial projects built worldwide. We pride ourselves on being builders creating architectural.</p>

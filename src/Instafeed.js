@@ -31,7 +31,7 @@ import instalogo from './Assests/images/insta_logo.png';
                         </Col>
                         <Col md={8} lg={8} xl={8} xs={12}>
                             <div className='instafeed_image'>
-                            {insta? (<div class="elfsight-app-368122dd-eb07-4a5c-b0a6-014ed3804162"></div>) : (<p>Error</p>) }
+                            {insta? (<div class="elfsight-app-368122dd-eb07-4a5c-b0a6-014ed3804162"></div>) : (<p>Error: No Feed Found</p>) }
                             </div>
                         </Col>
                     </Row>

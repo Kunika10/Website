@@ -1,44 +1,144 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from './Assests/images/logo.png';
-
- const Header = () => {
-    const [state, setState] = useState({
-        initial: false,
-        clicked: null,
-        menuName: "Menu"
-      });
-    const [disabled, setDisabled] = useState(false);
+import { useEffect } from "react";
 
 
-    const handleMenu = () => {
-        disableMenu();
-        if (state.initial === false) {
-          setState({
-            initial: null,
-            clicked: true,
-            menuName: "Close"
-          });
-        } else if (state.clicked === true) {
-          setState({
-            clicked: !state.clicked,
-            menuName: "Menu"
-          });
-        } else if (state.clicked === false) {
-          setState({
-            clicked: !state.clicked,
-            menuName: "Close"
-          });
-        }
-      };
-     
-    const disableMenu = () => {
-        setDisabled(!disabled);
-        setTimeout(() => {
-          setDisabled(false);
-        }, 1200);
-      };
+
+const COLORS = {
+  primaryDark: "#115b4c",
+  primaryLight: "#B6EDC8",
+};
+
+const MenuLabel = styled.label`
+  position: fixed;
+  top: -6px;
+  right: 14rem;
+  cursor: pointer;
+  z-index: 1000;
+  text-align: center;
+`;
+
+const NavBackground = styled.div`
+  position: fixed;
+  top: 6.5rem;
+  right: 6.5rem;
+  background-image: radial-gradient(
+    ${COLORS.primaryDark},
+    ${COLORS.primaryLight}
+  );
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  z-index: 600;
+  transform: ${(props) => (props.clicked ? "scale(80)" : "scale(0)")};
+  transition: transform 0.8s;
+`;
+
+const Icon = styled.span`
+  position: relative;
+  background-color: #fff;
+  width: 2rem;
+  height: 2px;
+  display: inline-block;
+  margin-top: 3.5rem;
+  transition: all 0.3s;
+  transform: rotate(180deg);
+  &::before,
+  &::after {
+    content: "";
+    background-color: #fff;
+    width: 3rem;
+    height: 2px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s;
+  }
+  &::before {
+    top: ${(props) => (props.clicked ? "0" : "-0.8rem")};
+    transform: ${(props) => (props.clicked ? "rotate(135deg)" : "rotate(0)")};
+  }
+  &::after {
+    top: ${(props) => (props.clicked ? "0" : "0.8rem")};
+    transform: ${(props) => (props.clicked ? "rotate(-135deg)" : "rotate(0)")};
+  }
+  ${MenuLabel}:hover &::before {
+    top: ${(props) => (props.clicked ? "0" : "-1rem")};
+  }
+  ${MenuLabel}:hover &::after {
+    top: ${(props) => (props.clicked ? "0" : "1rem")};
+  }
+`;
+
+const Navigation = styled.nav`
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 600;
+  width: ${(props) => (props.clicked ? "100%" : "0")};
+  opacity: ${(props) => (props.clicked ? "1" : "0")};
+  transition: width 0.8s, opacity 0.8s;
+`;
+
+const List = styled.ul`
+  position: absolute;
+  list-style: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+`;
+const ItemLink = styled(NavLink)`
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 300;
+  text-decoration: none;
+  color: ${COLORS.primaryLight};
+  padding: 1rem 2rem;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    #fff 50%
+  );
+  background-size: 240%;
+  transition: all 0.4s;
+  &:hover,
+  &:active {
+    background-position: 100%;
+    color: ${COLORS.primaryDark};
+    transform: translateX(1rem);
+  }
+`;
+
+
+function Header () {
+
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", isSticky);
+    return () => {
+      window.removeEventListener("scroll", isSticky);
+    };
+  });
+  const isSticky = (e) => {
+    const header = document.querySelector(".header");
+    const scrollTop = window.scrollY;
+    scrollTop >= 250
+      ? header.classList.add("is-sticky")
+      : header.classList.remove("is-sticky");
+  };
+
+
   return (
     <>
         <div className='header'>
@@ -50,11 +150,44 @@ import logo from './Assests/images/logo.png';
                     <li className='header_li'><Link to='/'> Blogs </Link></li>
                     <li className='header_li'><Link to='/'> Careers </Link></li>
                     <li className='header_li header_border'><Link to='/'> Book An Appointment </Link></li>
-                    <li className='header_li'><Link to='/'> Book An Appointment </Link></li>
-                    <li className='header_li'><Link to='/' disabled={disabled} onClick={handleMenu}> MENU </Link></li>
-                    <div className="menu">
-            </div>
-                </ul>
+                    <li className='header_li'><Link to='/'>
+                    <MenuLabel htmlFor="navi-toggle" onClick={handleClick}>
+                      <Icon clicked={click}>&nbsp;</Icon>
+                    </MenuLabel></Link></li>
+                                <li className='header_li'><Link to='/'> MENU </Link></li>
+                              
+                  <NavBackground clicked={click}>&nbsp;</NavBackground>
+
+                  <Navigation clicked={click}>
+                    <List>
+                      <li>
+                        <ItemLink onClick={handleClick} to="/">
+                          Home
+                        </ItemLink>
+                      </li>
+                      <li>
+                        <ItemLink onClick={handleClick} to="/about">
+                          About
+                        </ItemLink>
+                      </li>
+                      <li>
+                        <ItemLink onClick={handleClick} to="/portfolio">
+                          Portfolio
+                        </ItemLink>
+                      </li>
+                      <li>
+                        <ItemLink onClick={handleClick} to="/blog">
+                          Blog
+                        </ItemLink>
+                      </li>
+                      <li>
+                        <ItemLink onClick={handleClick} to="/contact">
+                          Contact Us
+                        </ItemLink>
+                      </li>
+                    </List>
+                  </Navigation>
+                            </ul>
             </div>
         </Container>
         </div>
